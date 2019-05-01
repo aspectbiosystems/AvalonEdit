@@ -61,7 +61,23 @@ namespace ICSharpCode.AvalonEdit.Search
 		public virtual string FindPreviousText {
 			get { return "Find previous (Shift+F3)"; }
 		}
-		
+
+		/// <summary>
+		/// Default: 'Replace next (ALT+R)'
+		/// </summary>
+		public virtual string ReplaceNextText
+		{
+			get { return "Replace next (ALT+R)"; }
+		}
+
+		/// <summary>
+		/// Default: 'Replace all (ALT+A)'
+		/// </summary>
+		public virtual string ReplaceAllText
+		{
+			get { return "Replace all (ALT+A)"; }
+		}
+
 		/// <summary>
 		/// Default: 'Error: '
 		/// </summary>

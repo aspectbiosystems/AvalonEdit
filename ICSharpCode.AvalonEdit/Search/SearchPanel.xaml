@@ -1,43 +1,85 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:search="clr-namespace:ICSharpCode.AvalonEdit.Search">
+	<SolidColorBrush x:Key="AspectDeepBlueColor" Color="#FF003A70"></SolidColorBrush>
+	<DrawingImage x:Key="left_arrowDrawingImage">
+		<DrawingImage.Drawing>
+			<DrawingGroup ClipGeometry="M0,0 V492 H492 V0 H0 Z">
+				<DrawingGroup>
+					<GeometryDrawing Brush="{StaticResource AspectDeepBlueColor}" Geometry="F1 M492,492z M0,0z M464.344,207.418L465.112,207.586 135.888,207.586 239.384,103.862C244.452,98.798 247.232,91.938 247.232,84.738 247.232,77.538 244.452,70.726 239.384,65.65L223.28,49.538C218.216,44.474 211.468,41.674 204.272,41.674 197.072,41.674 190.32,44.454 185.256,49.518L7.844,226.914C2.76,231.998 -0.02,238.77 0,245.974 -0.02,253.218 2.76,259.994 7.844,265.07L185.256,442.482C190.32,447.542 197.068,450.326 204.272,450.326 211.468,450.326 218.216,447.538 223.28,442.482L239.384,426.37C244.452,421.314 247.232,414.562 247.232,407.362 247.232,400.166 244.452,393.77 239.384,388.71L134.72,284.406 464.712,284.406C479.54,284.406,492,271.626,492,256.806L492,234.018C492,219.198,479.172,207.418,464.344,207.418z" />
+				</DrawingGroup>
+			</DrawingGroup>
+		</DrawingImage.Drawing>
+	</DrawingImage>
+	<DrawingImage x:Key="right_arrowDrawingImage">
+		<DrawingImage.Drawing>
+			<DrawingGroup ClipGeometry="M0,0 V492 H492 V0 H0 Z">
+				<DrawingGroup Transform="-1,1.22460635382238E-16,-1.22460635382238E-16,-1,491.9999,492">
+					<GeometryDrawing Brush="{StaticResource AspectDeepBlueColor}" Geometry="F1 M492,492z M0,0z M464.344,207.418L465.112,207.586 135.888,207.586 239.384,103.862C244.452,98.798 247.232,91.938 247.232,84.738 247.232,77.538 244.452,70.726 239.384,65.65L223.28,49.538C218.216,44.474 211.468,41.674 204.272,41.674 197.072,41.674 190.32,44.454 185.256,49.518L7.844,226.914C2.76,231.998 -0.02,238.77 0,245.974 -0.02,253.218 2.76,259.994 7.844,265.07L185.256,442.482C190.32,447.542 197.068,450.326 204.272,450.326 211.468,450.326 218.216,447.538 223.28,442.482L239.384,426.37C244.452,421.314 247.232,414.562 247.232,407.362 247.232,400.166 244.452,393.77 239.384,388.71L134.72,284.406 464.712,284.406C479.54,284.406,492,271.626,492,256.806L492,234.018C492,219.198,479.172,207.418,464.344,207.418z" />
+				</DrawingGroup>
+			</DrawingGroup>
+		</DrawingImage.Drawing>
+	</DrawingImage>
 	<Style TargetType="search:SearchPanel">
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type search:SearchPanel}">
-					<Border Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="Arrow">
-						<StackPanel Orientation="Horizontal">
-							<TextBox Name="PART_searchTextBox" Focusable="True" Width="150" Height="24" Margin="3,3,3,0">
-								<TextBox.Text>
-									<Binding Path="SearchPattern" RelativeSource="{RelativeSource TemplatedParent}" UpdateSourceTrigger="PropertyChanged">
-										<Binding.ValidationRules>
-											<ExceptionValidationRule />
-										</Binding.ValidationRules>
-									</Binding>
-								</TextBox.Text>
-							</TextBox>
-							<search:DropDownButton Height="24">
-								<search:DropDownButton.DropDownContent>
-									<Popup StaysOpen="False" Name="PART_dropdownPopup">
-										<Border Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" BorderThickness="1">
-											<StackPanel Orientation="Vertical">
-												<CheckBox IsChecked="{Binding MatchCase, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Localization.MatchCaseText, RelativeSource={RelativeSource TemplatedParent}}" Margin="3" />
-												<CheckBox IsChecked="{Binding WholeWords, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Localization.MatchWholeWordsText, RelativeSource={RelativeSource TemplatedParent}}" Margin="3" />
-												<CheckBox IsChecked="{Binding UseRegex, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Localization.UseRegexText, RelativeSource={RelativeSource TemplatedParent}}" Margin="3" />
-											</StackPanel>
-										</Border>
-									</Popup>
-								</search:DropDownButton.DropDownContent>
-							</search:DropDownButton>
-							<Button Margin="3" Height="24" Width="24" Command="search:SearchCommands.FindPrevious" ToolTip="{Binding Localization.FindPreviousText, RelativeSource={RelativeSource TemplatedParent}}">
-								<Image Width="16" Height="16" Stretch="Fill" Source="prev.png" />
-							</Button>
-							<Button Margin="3" Height="24" Width="24" Command="search:SearchCommands.FindNext" ToolTip="{Binding Localization.FindNextText, RelativeSource={RelativeSource TemplatedParent}}">
-								<Image Width="16" Height="16" Stretch="Fill" Source="next.png" />
-							</Button>
-							<Button Height="16" Width="16" HorizontalAlignment="Right" VerticalAlignment="Top" Command="search:SearchCommands.CloseSearchPanel"
-							        VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Focusable="False">
-								<Path Data="M 0,0 L 8,8 M 8,0 L 0,8" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" />
-							</Button>
+					<ControlTemplate.Resources>
+						<BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+					</ControlTemplate.Resources>
+					<Border Name="PART_searchPanel" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="Arrow">
+						<StackPanel Orientation="Vertical" Background="#D2E6FA">
+							<StackPanel Orientation="Horizontal">
+								<TextBox Name="PART_searchTextBox" Focusable="True" Width="150" Height="20" Margin="3,3,3,3" TabIndex="0">
+									<TextBox.Text>
+										<Binding Path="SearchPattern" RelativeSource="{RelativeSource TemplatedParent}" UpdateSourceTrigger="PropertyChanged">
+											<Binding.ValidationRules>
+												<ExceptionValidationRule />
+											</Binding.ValidationRules>
+										</Binding>
+									</TextBox.Text>
+								</TextBox>
+								<search:DropDownButton Height="24" TabIndex="2">
+									<search:DropDownButton.DropDownContent>
+										<Popup StaysOpen="False">
+											<Border Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" BorderThickness="1">
+												<StackPanel Orientation="Vertical">
+													<CheckBox IsChecked="{Binding MatchCase, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Localization.MatchCaseText, RelativeSource={RelativeSource TemplatedParent}}" Margin="3" />
+													<CheckBox IsChecked="{Binding WholeWords, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Localization.MatchWholeWordsText, RelativeSource={RelativeSource TemplatedParent}}" Margin="3" />
+													<CheckBox IsChecked="{Binding UseRegex, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Localization.UseRegexText, RelativeSource={RelativeSource TemplatedParent}}" Margin="3" />
+												</StackPanel>
+											</Border>
+										</Popup>
+									</search:DropDownButton.DropDownContent>
+								</search:DropDownButton>
+								<Button Margin="3" Height="20" Width="20" BorderThickness="0" Background="#D2E6FA" Command="search:SearchCommands.FindPrevious" ToolTip="{Binding Localization.FindPreviousText, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="3">
+									<Image Width="16" Height="16" Stretch="Fill" Source="{StaticResource left_arrowDrawingImage}" />
+								</Button>
+								<Button Margin="3" Height="20" Width="20" BorderThickness="0" Background="#D2E6FA" Command="search:SearchCommands.FindNext" ToolTip="{Binding Localization.FindNextText, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="4">
+									<Image Width="16" Height="16" Stretch="Fill" Source="{StaticResource right_arrowDrawingImage}" />
+								</Button>
+								<Button Height="16" Width="16" HorizontalAlignment="Right" VerticalAlignment="Top" Command="search:SearchCommands.CloseSearchPanel"
+									VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Focusable="False" TabIndex="7"
+									BorderThickness="0" Background="#D2E6FA">
+									<Path Data="M 0,0 L 8,8 M 8,0 L 0,8" Stroke="{StaticResource AspectDeepBlueColor}" StrokeThickness="2" />
+								</Button>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" Visibility="{Binding ShowReplace, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource booleanToVisibilityConverter}}">
+								<TextBox Name="PART_replaceTextBox" Focusable="True" Width="150" Height="20" Margin="3,3,3,3" TabIndex="1">
+									<TextBox.Text>
+										<Binding Path="Replacement" RelativeSource="{RelativeSource TemplatedParent}" UpdateSourceTrigger="PropertyChanged">
+											<Binding.ValidationRules>
+												<ExceptionValidationRule />
+											</Binding.ValidationRules>
+										</Binding>
+									</TextBox.Text>
+								</TextBox>
+								<Button Margin="3" Height="20" Width="20" BorderThickness="0" Background="#D2E6FA" Command="search:SearchCommands.ReplaceNext" ToolTip="{Binding Localization.ReplaceNextText, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="5">
+									<Image Width="16" Height="16" Stretch="Fill" Source="replacenext.png" />
+								</Button>
+								<Button Margin="3" Height="20" Width="20" BorderThickness="0" Background="#D2E6FA" Command="search:SearchCommands.ReplaceAll" ToolTip="{Binding Localization.ReplaceAllText, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="6">
+									<Image Width="16" Height="16" Stretch="Fill" Source="replaceall.png" />
+								</Button>
+							</StackPanel>
 						</StackPanel>
 					</Border>
 				</ControlTemplate>

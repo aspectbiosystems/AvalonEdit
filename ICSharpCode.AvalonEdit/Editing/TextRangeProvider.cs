@@ -26,6 +26,7 @@ using ICSharpCode.AvalonEdit.Rendering;
 using System.Collections.Generic;
 using ICSharpCode.AvalonEdit.Utils;
 using System.Windows;
+using ICSharpCode.NRefactory.Editor;
 
 namespace ICSharpCode.AvalonEdit.Editing
 {
